@@ -1,0 +1,13 @@
+* {
+    box-sizing: border-box;
+    border: 2px solid gray;
+}
+
+html {
+    background-color: darkblue;
+}
+
+#container {
+    width: 500px;
+    height: 900px;
+}
