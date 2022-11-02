@@ -39,8 +39,10 @@ h1 {
 #display {
     width: 90%;
     height: 25%;
+    background-color: rgb(44, 0, 85);
     border: 2px solid purple;
     border-radius: 8px;
+    box-shadow: 0 0 15px 8px rgb(239, 159, 255) inset;
     display: flex;
     flex-direction: column;
 }
@@ -68,6 +70,7 @@ h1 {
 .btn {
     font-size: 1.5rem;
     font-weight: 900;
+    background-color: white;
     border: 2px solid purple;
     border-radius: 8px;
     transition: 0.3s;
