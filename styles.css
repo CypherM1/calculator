@@ -1,13 +1,91 @@
 * {
     box-sizing: border-box;
-    border: 2px solid gray;
 }
 
 html {
-    background-color: darkblue;
+    height: 100vh;
+    background-image: url(./pics/neonBg.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    background-color: black;
+    border: 5px solid purple;
+    border-radius: 8px;
+    color: white;
+    font-size: 3rem;
+    text-align: center;
+    box-shadow: 0 0 40px 30px blueviolet
 }
 
 #container {
-    width: 500px;
-    height: 900px;
+    background-color: black;
+    width: 600px;
+    height: 600px;
+    border: 5px solid purple;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 0 40px 30px blueviolet
+}
+
+#display {
+    width: 90%;
+    height: 25%;
+    border: 2px solid purple;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+#lastEq {
+    height: 25%;
+}
+
+#currentEq {
+    height: 75%;
+}
+
+#buttonContainer {
+    width: 90%;
+    height: 70%;
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+#clear {
+    grid-column: span 2;
+}
+
+.btn {
+    font-size: 1.5rem;
+    font-weight: 900;
+    border: 2px solid purple;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background-color: purple;
+    background-color: darkslateblue;
+    color: white;
+    scale: 1.1;
+    box-shadow: 0 0 40px 5px blueviolet
+}
+
+.btn:active {
+    scale: 1;
+}
+
+#backspace {
+    font-size: 2rem;
+    font-weight: 1000;
 }
