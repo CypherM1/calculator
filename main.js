@@ -24,38 +24,50 @@ numberButtons.forEach((button) =>
   button.addEventListener('click', () => appendNumber(button.textContent))
 )
 
+operatorButtons.forEach((button) =>
+  button.addEventListener('click', () => setOperation(button.textContent))
+)
+
 function appendNumber(number) {
     if (currentOperationScreen.textContent === '0' || shouldResetScreen)
       resetScreen()
     currentOperationScreen.textContent += number
   }
 
-  function resetScreen() {
-    currentOperationScreen.textContent = ''
-    shouldResetScreen = false
-  }
+function resetScreen() {
+  currentOperationScreen.textContent = ''
+  shouldResetScreen = false
+}
+
+function setOperation(operator) {
+  if (currentOperation !== null) evaluate()
+  firstOperand = currentOperationScreen.textContent
+  currentOperation = operator
+  lastEq.textContent = `${firstOperand} ${currentOperation}`
+  shouldResetScreen = true
+}
 
 
-  function handleKeyboardInput(e) {
-    if (e.key >= 0 && e.key <= 9) appendNumber(e.key)
-    if (e.key === '.') appendPoint()
-    if (e.key === '=' || e.key === 'Enter') evaluate()
-    if (e.key === 'Backspace') deleteNumber()
-    if (e.key === 'Escape') clear()
-    if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/')
-      setOperation(convertOperator(e.key))
-  }
+function handleKeyboardInput(e) {
+  if (e.key >= 0 && e.key <= 9) appendNumber(e.key)
+  if (e.key === '.') appendPoint()
+  if (e.key === '=' || e.key === 'Enter') evaluate()
+  if (e.key === 'Backspace') deleteNumber()
+  if (e.key === 'Escape') clear()
+  if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/')
+    setOperation(convertOperator(e.key))
+}
 
-  function clear() {
-    currentOperationScreen.textContent = '0'
-    lastOperationScreen.textContent = ''
-    firstOperand = ''
-    secondOperand = ''
-    currentOperation = null
-  }
+function clear() {
+  currentOperationScreen.textContent = '0'
+  lastOperationScreen.textContent = ''
+  firstOperand = ''
+  secondOperand = ''
+  currentOperation = null
+}
 
-  function deleteNumber() {
-    currentOperationScreen.textContent = currentOperationScreen.textContent
-      .toString()
-      .slice(0, -1)
-  }
+function deleteNumber() {
+  currentOperationScreen.textContent = currentOperationScreen.textContent
+    .toString()
+    .slice(0, -1)
+}
