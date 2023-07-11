@@ -17,6 +17,7 @@ const currentOperationScreen = document.getElementById('currentEq')
 window.addEventListener('keydown', handleKeyboardInput)
 clearButton.addEventListener('click', clear)
 deleteButton.addEventListener('click', deleteNumber)
+pointButton.addEventListener('click', appendPeriod)
 
 
 
@@ -47,6 +48,13 @@ function setOperation(operator) {
   shouldResetScreen = true
 }
 
+function appendPeriod() {
+  if (shouldResetScreen) resetScreen()
+  if (currentOperationScreen.textContent === '')
+    currentOperationScreen.textContent = '0'
+  if (currentOperationScreen.textContent.includes('.')) return
+  currentOperationScreen.textContent += '.'
+}
 
 function handleKeyboardInput(e) {
   if (e.key >= 0 && e.key <= 9) appendNumber(e.key)
