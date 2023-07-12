@@ -10,14 +10,18 @@ const equalsButton = document.getElementById('equals')
 const clearButton = document.getElementById('clear')
 const deleteButton = document.getElementById('backspace')
 const pointButton = document.getElementById('period')
+const negPosButton = document.getElementById('negPos')
 const lastOperationScreen = document.getElementById('lastEq')
 const currentOperationScreen = document.getElementById('currentEq')
+
 
 
 window.addEventListener('keydown', handleKeyboardInput)
 clearButton.addEventListener('click', clear)
 deleteButton.addEventListener('click', deleteNumber)
 pointButton.addEventListener('click', appendPeriod)
+negPosButton.addEventListener('click', negPosSwitch)
+equalsButton.addEventListener('click', evaluate)
 
 
 
@@ -56,6 +60,11 @@ function appendPeriod() {
   currentOperationScreen.textContent += '.'
 }
 
+function negPosSwitch() {
+  if (currentOperation < 0) currentOperationScreen.textContent + 1
+  if (currentOperation > 0) currentOperationScreen.textContent + 2
+}
+
 function handleKeyboardInput(e) {
   if (e.key >= 0 && e.key <= 9) appendNumber(e.key)
   if (e.key === '.') appendPoint()
@@ -78,4 +87,56 @@ function deleteNumber() {
   currentOperationScreen.textContent = currentOperationScreen.textContent
     .toString()
     .slice(0, -1)
+}
+
+function evaluate() {
+  if (currentOperation === null || shouldResetScreen) return
+  if (currentOperation === '/' && currentOperationScreen.textContent === '0') {
+    alert("You can't divide by 0!")
+    return
+  }
+  secondOperand = currentOperationScreen.textContent
+  currentOperationScreen.textContent = roundResult(
+    operate(currentOperation, firstOperand, secondOperand)
+  )
+  lastOperationScreen.textContent = `${firstOperand} ${currentOperation} ${secondOperand} =`
+  currentOperation = null
+}
+
+function roundResult(number) {
+  return Math.round(number * 1000) / 1000
+}
+
+function add(a, b) {
+  return a + b
+}
+
+function substract(a, b) {
+  return a - b
+}
+
+function multiply(a, b) {
+  return a * b
+}
+
+function divide(a, b) {
+  return a / b
+}
+
+function operate(operator, a, b) {
+  a = Number(a)
+  b = Number(b)
+  switch (operator) {
+    case '+':
+      return add(a, b)
+    case '-':
+      return substract(a, b)
+    case '*':
+      return multiply(a, b)
+    case '/':
+      if (b === 0) return null
+      else return divide(a, b)
+    default:
+      return null
+  }
 }
