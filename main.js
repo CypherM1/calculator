@@ -60,9 +60,9 @@ function appendPeriod() {
   currentOperationScreen.textContent += '.'
 }
 
-function negPosSwitch() {
-  if (currentOperation < 0) currentOperationScreen.textContent + 1
-  if (currentOperation > 0) currentOperationScreen.textContent + 2
+function negPosSwitch(number) {
+  if (currentOperationScreen.textContent > 0) currentOperationScreen.textContent = (currentOperationScreen.textContent * -1)
+  else if (currentOperationScreen.textContent < 0) currentOperationScreen.textContent = (currentOperationScreen.textContent * -1)
 }
 
 function handleKeyboardInput(e) {
